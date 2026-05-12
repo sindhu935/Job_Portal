@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobPortal | Find Your Next Role</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header>
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-briefcase"></i>
+          <h2>Job<span>Portal</span></h2>
+        </div>
+        <div class="nav-tabs">
+          <button class="tab-btn active" data-tab="jobs">
+            <i class="fas fa-search"></i> Browse Jobs
+          </button>
+          <button class="tab-btn" data-tab="applications">
+            <i class="fas fa-file-alt"></i> Applications
+          </button>
+          <button class="tab-btn" data-tab="post">
+            <i class="fas fa-plus"></i> Post Job
+          </button>
+        </div>
+        <div class="user">
+          <i class="fas fa-user-circle"></i>
+          <span>Sarah</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Area -->
+    <main>
+      <!-- JOBS TAB -->
+      <div id="jobsTab" class="tab-content active">
+        <div class="hero">
+          <h1>Find Your <span class="highlight">Dream Job</span></h1>
+          <p>Browse through thousands of opportunities</p>
+          
+          <div class="filters">
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input type="text" id="searchInput" placeholder="Job title or company...">
+            </div>
+            <div class="filter-group">
+              <select id="categoryFilter">
+                <option value="">All Categories</option>
+                <option value="Technology">💻 Technology</option>
+                <option value="Design">🎨 Design</option>
+                <option value="Marketing">📢 Marketing</option>
+                <option value="Finance">💰 Finance</option>
+                <option value="Sales">🤝 Sales</option>
+              </select>
+              <select id="typeFilter">
+                <option value="">All Types</option>
+                <option value="Full-time">Full-time</option>
+                <option value="Part-time">Part-time</option>
+                <option value="Remote">Remote</option>
+                <option value="Contract">Contract</option>
+              </select>
+              <button id="resetBtn" class="reset-btn">
+                <i class="fas fa-undo"></i> Reset
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="results-info">
+          <span id="jobCount">0</span> jobs found
+        </div>
+
+        <div id="jobsList" class="jobs-list"></div>
+
+        <div id="noJobsMsg" class="empty-state hidden">
+          <i class="fas fa-search"></i>
+          <h3>No jobs found</h3>
+          <p>Try adjusting your search or filters</p>
+          <button id="clearFiltersBtn" class="btn-primary">Clear Filters</button>
+        </div>
+      </div>
+
+      <!-- APPLICATIONS TAB -->
+      <div id="applicationsTab" class="tab-content">
+        <div class="section-header">
+          <h2><i class="fas fa-file-alt"></i> My Applications</h2>
+          <p>Jobs you've applied for</p>
+        </div>
+        <div id="applicationsList" class="applications-list"></div>
+        <div id="noAppsMsg" class="empty-state hidden">
+          <i class="fas fa-inbox"></i>
+          <h3>No applications yet</h3>
+          <p>Apply to jobs and they'll show up here</p>
+        </div>
+      </div>
+
+      <!-- POST JOB TAB -->
+      <div id="postTab" class="tab-content">
+        <div class="section-header">
+          <h2><i class="fas fa-plus-circle"></i> Post a New Job</h2>
+          <p>Fill in the details to list a job opening</p>
+        </div>
+        <div class="form-card">
+          <form id="postJobForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Job Title *</label>
+                <input type="text" id="jobTitle" required placeholder="e.g., Frontend Developer">
+              </div>
+              <div class="form-group">
+                <label>Company *</label>
+                <input type="text" id="company" required placeholder="Company name">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Category *</label>
+                <select id="jobCategory" required>
+                  <option value="">Select</option>
+                  <option value="Technology">Technology</option>
+                  <option value="Design">Design</option>
+                  <option value="Marketing">Marketing</option>
+                  <option value="Finance">Finance</option>
+                  <option value="Sales">Sales</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Job Type *</label>
+                <select id="jobType" required>
+                  <option value="">Select</option>
+                  <option value="Full-time">Full-time</option>
+                  <option value="Part-time">Part-time</option>
+                  <option value="Remote">Remote</option>
+                  <option value="Contract">Contract</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Location *</label>
+                <input type="text" id="location" required placeholder="e.g., New York or Remote">
+              </div>
+              <div class="form-group">
+                <label>Salary</label>
+                <input type="text" id="salary" placeholder="e.g., $70k - $90k">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Description *</label>
+              <textarea id="description" rows="5" required placeholder="Job description, requirements, responsibilities..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">
+              <i class="fas fa-paper-plane"></i> Post Job
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <!-- Apply Modal -->
+    <div id="applyModal" class="modal">
+      <div class="modal-inner">
+        <div class="modal-header">
+          <h3>Apply for this job</h3>
+          <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div id="modalJobInfo" class="modal-job"></div>
+          <form id="applyForm">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" id="applicantName" required>
+            </div>
+            <div class="form-group">
+              <label>Email *</label>
+              <input type="email" id="applicantEmail" required>
+            </div>
+            <div class="form-group">
+              <label>Cover Letter</label>
+              <textarea id="coverLetter" rows="3" placeholder="Why are you a good fit?"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">
+              <i class="fas fa-send"></i> Submit Application
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast hidden">
+      <i class="fas fa-check-circle"></i>
+      <span id="toastMsg"></span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
